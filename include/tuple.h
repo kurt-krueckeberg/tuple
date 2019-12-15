@@ -7,7 +7,7 @@
 
 template<class... Ts> struct tuple; //forward reference
 
-// Template specializtion for empty list of template arguments, the base struct of the tuple recursively implemented
+// Template specializtion for empty list of template arguments, the base struct of the recursively implemented tuple 
 // data structure.
 template<> struct tuple<> { 
 
@@ -32,7 +32,7 @@ template<class T, class... Ts> struct tuple<T, Ts...> : tuple<Ts...> {
 template<std::size_t Index, class _tuple> struct tuple_element;
 
 // recursive data structure tuple_element definition
-template <std::size_t Index, class T, class... Rest>  struct tuple_element<Index, tuple<T, Rest...>> :\
+template <std::size_t Index, class T, class... Rest>  struct tuple_element<Index, tuple<T, Rest...>> : 
      public tuple_element<Index - 1, tuple<Rest...> > {
 
     tuple_element()
@@ -58,8 +58,8 @@ template<class T, class... Rest>  struct tuple_element<0, tuple<T, Rest...>>  {
 /*
  * get reference to Index element of tuple
  */
-template<size_t Index, class... Type> inline\
- typename tuple_element<Index, tuple<Type...>>::value_type get(tuple<Type...>& _tuple)
+template<size_t Index, class... Type> inline 
+                       typename tuple_element<Index, tuple<Type...>>::value_type get(tuple<Type...>& _tuple)
 {
   std::cout << "In get<" << Index << ">(some_tuple)" << "\n---------" << std::endl;
 
