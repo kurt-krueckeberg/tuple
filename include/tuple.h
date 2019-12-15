@@ -7,8 +7,8 @@
 
 template<class... Ts> struct tuple; //forward reference
 
-// Template specializtion for empty list of template arguments, the base struct of the
-// tuple recursively implemented data structure.
+// Template specializtion for empty list of template arguments, the base struct of the tuple recursively implemented
+// data structure.
 template<> struct tuple<> { 
 
     tuple()
