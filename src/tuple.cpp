@@ -8,16 +8,26 @@
 
 #include <iostream>
 #include "tuple.h"
+#include <vector>
 
 int main()
 {
-	tuple<int, double, const char *> tup1(5, 10.5, "hello world!");
+	std::vector<int> v = {1, 2, 3, 4, 5};
 
-	tuple_element<2, tuple<int, double, const char *>> te2;
+	//tuple<int, int, const char *> tup1(5, 10, "hello world!");
+	tuple<int, int, std::vector<int>> tup1(5, 10, std::move(v));
 
-	tuple_element<1, tuple<int, double, const char *>> te1;
+	//tuple_element<2, tuple<int, double, const char *>> te2;
 
-	tuple_element<0, tuple<int, double, const char *>> te0;
+	auto v1 = get<2>(tup1);
+	auto v2 = get<1>(tup1);
+	auto v3 = get<0>(tup1);
+
+	//std::cout << v1 << std::endl;
+	std::cout << v2 << std::endl;
+	std::cout << v3 << std::endl;
+
+    //std::cout << get_realname(te) << "\n";
 
 	return 0;
 }

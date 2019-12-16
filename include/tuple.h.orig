@@ -3,7 +3,6 @@
 #include <cstdint>
 #include <cstddef>
 #include <iostream>
-#include <memory>
 #include <string>
 
 // These headers are needed for get_realname() template function at bottom.
@@ -26,7 +25,7 @@ template<> struct tuple<> {
 // Recall that public inheritance is the default for structs.
 template<class T, class... Ts> struct tuple<T, Ts...> : tuple<Ts...> { 
 
-    template<class Arg1, class... Args> tuple(Arg1&& arg1, Args&&...args) : tuple<Ts...>(std::forward<Args>(args)...), tail(std::forward<Arg1>(arg1))
+    tuple(T t, Ts... ts) : tuple<Ts...>(ts...), tail(t)
     {
         std::cout << "  In constructor for " <<  __PRETTY_FUNCTION__ /* << " where tail = " << tail */ << std::endl;
     }
