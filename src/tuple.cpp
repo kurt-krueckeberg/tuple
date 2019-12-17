@@ -28,7 +28,9 @@ int main()
 	std::cout << v2 << std::endl;
 	std::cout << v3 << std::endl;
 
-    //std::cout << get_realname(te) << "\n";
+	typename elem_type_holder<1, tuple<double, int, const char*>>::type foo;
+
+	std::cout << typeid(foo).name() << "\n";
 
 	return 0;
 }
