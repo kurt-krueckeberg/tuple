@@ -15,7 +15,8 @@ int main()
 	std::vector<int> v = {1, 2, 3, 4, 5};
 
 	//tuple<int, int, const char *> tup1(5, 10, "hello world!");
-	tuple<int, int, std::vector<int>> tup1(5, 10, std::move(v));
+	tuple tup1(5, 10, 11.75);
+	//tuple tup2(5, 10, std::move(v));
 
 	//tuple_element<2, tuple<int, double, const char *>> te2;
 
