@@ -11,9 +11,9 @@
 #include <type_traits>
 #include <cxxabi.h>
 
-template<class... Ts> struct tuple; //forward reference
+template<class... Ts> struct tuple; // Forward reference
 
-// Template specializtion for empty list of template arguments, the base struct of the recursively implemented tuple 
+// Template specializtion for an empty list of template arguments, which is the base struct of the recursively defined tuple 
 // data structure.
 template<> struct tuple<> { 
 
@@ -34,10 +34,10 @@ template<class T, class... Ts> struct tuple<T, Ts...> : tuple<Ts...> {
     T tail;
 };
 
-// tuple_element forward declaration.
+// Forward declaration of tuple_element forward
 template<std::size_t Index, class _tuple> struct tuple_element;
 
-// recursive data structure tuple_element definition
+// Recursive data structure tuple_element definition
 template <std::size_t Index, class T, class... Rest>  struct tuple_element<Index, tuple<T, Rest...>> : 
      public tuple_element<Index - 1, tuple<Rest...> > {
 
@@ -47,7 +47,7 @@ template <std::size_t Index, class T, class... Rest>  struct tuple_element<Index
     }
 };
 
-// partial template specialization for tuple_element<0, tuple<T, Rest...>>.
+// Partial template specialization for tuple_element<0, tuple<T, Rest...>>.
 template<class T, class... Rest>  struct tuple_element<0, tuple<T, Rest...>>  {
 
   using value_type = T&;                 // Reference to tail's type.
@@ -63,7 +63,7 @@ template<class T, class... Rest>  struct tuple_element<0, tuple<T, Rest...>>  {
 
 
 /*
- * This method returns the demangled name of the type tuple_element's actual type.
+ * This method returns the demangled name for a tuple_element<std::size_t, Ts...>'s actual type.
  */
 
 template<std::size_t Index, class T, class... Rest> std::string get_realname( tuple_element<Index, tuple<T, Rest...>>& te  )
@@ -94,6 +94,4 @@ template<size_t Index, class... Type> inline
 
   return static_cast<base_tuple_type&>(_tuple).tail;
 }
-
-
 #endif
