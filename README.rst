@@ -180,7 +180,7 @@ looks like this and shows the four levels of the struct hierarchy being instanti
 
 Visually the layout of ``tuple<double, int, const char *>`` looks like this:
 
-.. image:: ../images/recursive-tuple-layout.jpg
+.. image:: recursive-tuple-layout.jpg
    :scale: 75 %
 
 Accessing Elements of the Recursive Data Structure
