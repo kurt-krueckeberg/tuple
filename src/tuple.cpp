@@ -20,11 +20,11 @@ int main()
 
 	//tuple_element<2, tuple<int, double, const char *>> te2;
 
-	auto v1 = get<2>(tup1);
+	auto v1 = get<0>(tup1);
 	auto v2 = get<1>(tup1);
-	auto v3 = get<0>(tup1);
+	auto v3 = get<2>(tup1);
 
-	//std::cout << v1 << std::endl;
+	std::cout << v1 << std::endl;
 	std::cout << v2 << std::endl;
 	std::cout << v3 << std::endl;
 

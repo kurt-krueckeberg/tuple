@@ -51,7 +51,7 @@ template <std::size_t Index, class T, class... Rest>  struct tuple_element<Index
 template<class T, class... Rest>  struct tuple_element<0, tuple<T, Rest...>>  {
 
   using value_type = T&;                 // Reference to tail's type.
-  using base_tuple_struct = tuple<T, Rest...>;  // The type of the tuple instance
+  using base_tuple_type = tuple<T, Rest...>;  // The type of the tuple instance
 
   tuple_element()
   {
@@ -87,10 +87,10 @@ template<std::size_t Index, class T, class... Rest> std::string get_realname( tu
 template<size_t Index, class... Type> auto get(tuple<Type...>& _tuple) -> typename tuple_element<Index, tuple<Type...>>::value_type
 {
   // We will cast _tuple to the base type of the corresponding tuple_element<Index,  tuple<Type...>> recursive struct's base type.
-  using base_tuple_struct = typename tuple_element<Index, tuple<Type...>>::base_tuple_struct;
+  using base_tuple_type = typename tuple_element<Index, tuple<Type...>>::base_tuple_type;
 
-  std::cout << "In get<" << Index << ">(some_tuple)" << " doing this cast: static_cast<base_tuple_struct&>(_tuple).tail\n---------" << std::endl;
+  std::cout << "In get<" << Index << ">(some_tuple)" << " doing this cast: static_cast<base_tuple_type&>(_tuple).tail\n---------" << std::endl;
 
-  return static_cast<base_tuple_struct&>(_tuple).tail;
+  return static_cast<base_tuple_type&>(_tuple).tail;
 }
 #endif
