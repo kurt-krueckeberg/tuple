@@ -6,7 +6,7 @@
 #include <memory>
 #include <string>
 
-// These headers are needed for get_realname() template function at bottom.
+// These headers are needed for get_realname() template function.
 #include <typeinfo>
 #include <type_traits>
 #include <cxxabi.h>
@@ -19,7 +19,7 @@ template<> struct tuple<> {
 
     tuple()
     {
-  	std::cout << "In template<> tuple<>::tuple() constructor, which has NO member tail." << std::endl;
+  	  std::cout << "In template<> tuple<>::tuple() constructor, which has NO member tail." << std::endl;
     }
 }; 
 
@@ -28,7 +28,7 @@ template<class T, class... Ts> struct tuple<T, Ts...> : tuple<Ts...> {
 
     template<class Arg1, class... Args> tuple(Arg1&& arg1, Args&&...args) : tuple<Ts...>(std::forward<Args>(args)...), tail(std::forward<Arg1>(arg1))
     {
-        std::cout << "  In constructor for " <<  __PRETTY_FUNCTION__ /* << " where tail = " << tail */ << std::endl;
+        std::cout << "  In constructor for " <<  __PRETTY_FUNCTION__  << std::endl;
     }
 
     T tail;
@@ -51,7 +51,7 @@ template <std::size_t Index, class T, class... Rest>  struct tuple_element<Index
 template<class T, class... Rest>  struct tuple_element<0, tuple<T, Rest...>>  {
 
   using value_type = T&;                 // Reference to tail's type.
-  using base_tuple_type = tuple<T, Rest...>;  // The type of the tuple instance
+  using base_tuple_struct = tuple<T, Rest...>;  // The type of the tuple instance
 
   tuple_element()
   {
@@ -84,14 +84,13 @@ template<std::size_t Index, class T, class... Rest> std::string get_realname( tu
 /*
  * get reference to Index element of tuple
  */
-template<size_t Index, class... Type> inline 
-                       typename tuple_element<Index, tuple<Type...>>::value_type get(tuple<Type...>& _tuple)
+template<size_t Index, class... Type> auto get(tuple<Type...>& _tuple) -> typename tuple_element<Index, tuple<Type...>>::value_type
 {
   // We will cast _tuple to the base type of the corresponding tuple_element<Index,  tuple<Type...>> recursive struct's base type.
-  using base_tuple_type = typename tuple_element<Index, tuple<Type...>>::base_tuple_type;
+  using base_tuple_struct = typename tuple_element<Index, tuple<Type...>>::base_tuple_struct;
 
-  std::cout << "In get<" << Index << ">(some_tuple)" << " doing this cast: static_cast<base_tuple_type&>(_tuple).tail\n---------" << std::endl;
+  std::cout << "In get<" << Index << ">(some_tuple)" << " doing this cast: static_cast<base_tuple_struct&>(_tuple).tail\n---------" << std::endl;
 
-  return static_cast<base_tuple_type&>(_tuple).tail;
+  return static_cast<base_tuple_struct&>(_tuple).tail;
 }
 #endif
