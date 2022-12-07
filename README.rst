@@ -54,7 +54,7 @@ will result in this set of tuple instances:
 
 * ``struct tuple<string> : tuple<float> : tuple<string> : tuple<> { string tail; }``
 * ``struct tuple<float> : tuple<int> : tuple<> { float  tail;}``
-* ``struct tuple<int> : struct <> { int tail;}``
+* ``struct tuple<int> : tuple<> { int tail;}``
 * ``struct tuple {}`` // This is the ``tuple<>`` instance.
 
 The first parameter of a tuple's constructor will reside in ultimate base struct, the 2nd parameter in the penultimate base class, and so on.
