@@ -116,8 +116,8 @@ To access individual tail members of a ``C`` instance, like the one below, use `
 
     auto x3 = static_cast<A&>(c).tail; // tail is A::tail
 
-A Recursive Data Structure Example Using a Variadic Class Template
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+The tuple Data Structure Implemented Using a Variadic Class Template
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 The preceeding code is just the sort of use case where variadic templates can make life easier. We begin by defining ``struct tuple<class...Types>`` that implements tuple as a recursive data structure. 
 
