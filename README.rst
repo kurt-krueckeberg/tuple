@@ -46,7 +46,7 @@ A tuple like this:
    using std::string;
    int i = 1;
    float f = 2.5;
-   string s = "heelo world";
+   string s = "hello world";
 
    tuple t(i, f,s);
 
