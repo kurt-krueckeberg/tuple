@@ -22,7 +22,7 @@ A variadic class template can be instantiated with a varying number of template 
 
    tuple<int, float, string> t(10, 22.5, "Hellow World");
 
-The variadic class template allows use to implement the tuple as a series of derived ``struct``\'s struct that has a base struct, which in turn has a base struct, that in turnc contains a struct.
+The variadic class template allows use to implement the tuple as a series of derived ``struct``\s .
 
 .. code-block:: cpp
 
