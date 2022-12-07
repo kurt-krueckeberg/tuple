@@ -43,7 +43,7 @@ A tuple like this:
 
 .. code-block:: cpp
 
-   using std::string
+   using std::string;
    int i = 1;
    float f = 2.5;
    string s = "heelo world";
