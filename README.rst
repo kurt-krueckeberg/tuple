@@ -43,12 +43,12 @@ A tuple like this:
 
 .. code-block:: cpp
 
-using std::string
-int i = 1;
-float f = 2.5;
-string s = "heelo world";
+   using std::string
+   int i = 1;
+   float f = 2.5;
+   string s = "heelo world";
 
-tuple t(i, f,s);
+   tuple t(i, f,s);
 
 will result in this set of tuple instances: 
 
