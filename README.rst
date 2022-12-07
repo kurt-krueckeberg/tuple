@@ -16,7 +16,13 @@ Good articles on implementing C++ Variadic Templates
 Variadic Class Template
 -----------------------
 
-A variadic class template can be instantiated with a varying number of template arguments. Such a variadic class template can be used to implement a tuple generic type, a generic data structure that can hold a varying set of types. The variadic class template allows use to implement the tuple as a sort of recursive data struct, a struct that has a base struct, which in turn has a base struct, that in turnc contains a struct.
+A variadic class template can be instantiated with a varying number of template arguments. Such a variadic class template can be used to implement a tuple generic type, a generic data structure that can hold a varying set of types; for example,
+
+.. code-block:: cpp
+
+   tuple<int, float, string> t(10, 22.5, "Hellow World");
+
+The variadic class template allows use to implement the tuple as a sort of recursive data struct, a struct that has a base struct, which in turn has a base struct, that in turnc contains a struct.
 
 .. code-block:: cpp
 
