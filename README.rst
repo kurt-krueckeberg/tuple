@@ -244,7 +244,8 @@ To better grasp how ``tuple_element<std:size_t, tuple<class T, class...Rest>>`` 
     
         tuple_element()
         {
-          std::cout << "  In tuple_element<" << Index << ", tuple<T, Rest...>>::tuple(), where there are not type definitions." << std::endl;
+          std::cout << "  In tuple_element<" << Index << ", tuple<T, Rest...>>::tuple(), where there are not \
+	      type definitions." << std::endl;
         }
     };
     
@@ -271,7 +272,8 @@ To better grasp how ``tuple_element<std:size_t, tuple<class T, class...Rest>>`` 
         // We will cast _tuple to the base type of the corresponding tuple_element<Index,  tuple<Type...>> recursive struct's base type.
         using base_tuple_struct = typename tuple_element<Index, tuple<Type...>>::base_tuple_struct;
         
-        std::cout << "In get<" << Index << ">(some_tuple)" << " doing this cast: static_cast<base_tuple_struct&>(_tuple).tail\n---------" << std::endl;
+        std::cout << "In get<" << Index << ">(some_tuple)" << " doing this cast: static_cast<base_tuple_struct&>(_tuple).tail\n
+	              ---------" << std::endl;
         
         return static_cast<base_tuple_struct&>(_tuple).tail;
     }
@@ -314,7 +316,8 @@ The actual instantiations that would occur when, say, ``element_tuple<1, tuple<i
 
     struct tuple_element<1, tuple<double, int, const char*>> : struct tuple_element<0, tuple<int, const char*>> {};
  
-Notice that only the base struct of the ``tuple_element`` hierarchy has the two type definitions seen in the output above. If we next look at the ouput from ``get<2>(some_instance)``
+Notice that only the base struct of the ``tuple_element`` hierarchy has the two type definitions seen in the output above. If we next look at the
+ouput from ``get<2>(some_instance)``
 
 .. code-block:: cpp
 
@@ -348,7 +351,8 @@ To understand the ``static_cast`` in ``get<2>(tup1)``, we look first at the inst
       return static_cast<base_tuple_struct&>(_tuple).tail;
     }
 
-``_tuple`` will be cast to the ``tuple_element<2, tuple<int, double, const char *>>::base_tuple_struct``, where ``base_tuple_struct`` is defined in the base struct of ``tuple_element<2, tuple<int, double, const char *>>::base_tuple_struct``, which is ``tuple_element<0, tuple<const char *>>``,
+``_tuple`` will be cast to the ``tuple_element<2, tuple<int, double, const char *>>::base_tuple_struct``, where ``base_tuple_struct`` is defined in
+the base struct of ``tuple_element<2, tuple<int, double, const char *>>::base_tuple_struct``, which is ``tuple_element<0, tuple<const char *>>``,
 and is:
 
 ``using base_tuple_struct = tuple<const char *>;``
