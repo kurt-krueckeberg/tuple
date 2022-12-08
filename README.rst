@@ -60,7 +60,7 @@ A tuple declared like this:
 
    tuple t(i, f,s);
 
-will result in this set of tuple instances: 
+will result in this series of template instantiations: 
 
 * ``struct tuple<string> : tuple<float> : tuple<string> : tuple<> { string tail; }``
 * ``struct tuple<float> : tuple<int> : tuple { float  tail;}``
