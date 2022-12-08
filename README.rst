@@ -62,9 +62,9 @@ A tuple declared like this:
 
 will result in this series of template instantiations: 
 
-* ``struct tuple<int> : tuple<float> : tuple<string> : tuple<> { string tail; }``
-* ``struct tuple<float> : tuple<int> : tuple { float  tail;}``
-* ``struct tuple<int> : tuple { int tail;}``
+* ``struct tuple<int> : tuple<float> : tuple<string> : tuple { int tail; }``
+* ``struct tuple<float> : tuple<string> : tuple { float tail;}``
+* ``struct tuple<string> : tuple { string tail;}``
 * ``struct tuple {}`` // This is the ``tuple<>`` instance.
 
 The first parameter of a tuple's constructor will reside in ultimate base struct, the 2nd parameter in the penultimate base class, and so on.
