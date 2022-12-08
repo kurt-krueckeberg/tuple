@@ -38,8 +38,8 @@ Variadic class templates allows one to implement a generic tuple as a series of 
 
     template <class T, class... Ts> struct tuple<T, Ts...> : tuple<Ts...> { 
 
-        // Invoke immediate base struct template with remaining arguments without T, the first argument,
-        // and construct tail using t whose type is T.
+        // The base struct is the template instantiation with the remaining arguments, without T, the first argument,
+        // and construct class member variable tail with value t of type T.
         tuple(T t, Rest... ts) : tuple<Ts...>(ts...), tail(t) {}
         T tail;
     };
