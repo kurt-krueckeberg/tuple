@@ -32,7 +32,7 @@ Variadic class templates allows one to implement a generic tuple as a series of 
 
     template<class... Types> struct tuple; // Forward declaration 
 
-    // Partial template specialization for the case when no template arguments are supplied 
+    // Partial template specialization for the case when no template arguments are supplied, which occurs as the last stage of the templates instantiation
     template<class... Types> struct tuple<> {}; 
 
     // public inheritance is the default for structs.
