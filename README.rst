@@ -49,7 +49,7 @@ Variadic class templates allows one to implement a generic tuple as a series of 
     tuple<int, float> t2; // Types contains two arguments: int and float
     tuple<0> error;       // error: 0 is not a type
 
-A tuple like this:
+A tuple declared like this:
 
 .. code-block:: cpp
 
