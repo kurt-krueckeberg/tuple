@@ -128,7 +128,8 @@ To access individual tail members of a ``C`` instance, like the one below, use `
 The tuple Data Structure Implemented Using a Variadic Class Template
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-The preceeding code is just the sort of use case where variadic templates can make life easier. We begin by defining ``struct tuple<class...Types>`` that implements tuple as a recursive data structure. 
+The preceeding code is just the sort of use case where variadic templates can make life easier. We begin by defining ``struct tuple<class...Types>`` that
+implements tuple as a recursive data structure. 
 
 .. note:: The complete ``tuple`` source is at `github <https://github.com/kurt-krueckeberg/tuple>`_.
 
@@ -235,7 +236,8 @@ in the tuple_element specialization ``template<std::size_t Index, class _tuple> 
 1. ``using base_tuple_struct = tuple<T, Rest...>;`` // This is the type of the base struct that contains the tail member we want.
 2. ``using value_type = T&;``                     // This is a reference to tail's type.
 
-To better grasp how ``tuple_element<std:size_t, tuple<class T, class...Rest>>`` works we add print statements to tuple_element's default constructors. The default constructor is not actually needed, but was added to show how ``tuple_element`` works:
+To better grasp how ``tuple_element<std:size_t, tuple<class T, class...Rest>>`` works we add print statements to tuple_element's default constructors.
+The default constructor is not actually needed, but was added to show how ``tuple_element`` works:
 
 .. code-block:: cpp
 
@@ -273,7 +275,8 @@ To better grasp how ``tuple_element<std:size_t, tuple<class T, class...Rest>>`` 
     template<size_t Index, class... Type> inline 
                            typename tuple_element<Index, tuple<Type...>>::value_type get(tuple<Type...>& _tuple)
     {
-        // We will cast _tuple to the base type of the corresponding tuple_element<Index,  tuple<Type...>> recursive struct's base type.
+        // We will cast _tuple to the base type of the corresponding tuple_element<Index,  tuple<Type...>> recursive struct's
+	// base type.
         using base_tuple_struct = typename tuple_element<Index, tuple<Type...>>::base_tuple_struct;
         
         std::cout << "In get<" << Index << ">(some_tuple)" << " doing this cast: static_cast<base_tuple_struct&>(_tuple).tail\n \
@@ -320,8 +323,8 @@ The actual instantiations that would occur when, say, ``element_tuple<1, tuple<i
 
     struct tuple_element<1, tuple<double, int, const char*>> : struct tuple_element<0, tuple<int, const char*>> {};
  
-Notice that only the base struct of the ``tuple_element`` hierarchy has the two type definitions seen in the output above. If we next look at the
-ouput from ``get<2>(some_instance)``
+Notice that only the base struct of the ``tuple_element`` hierarchy has the two type definitions seen in the output above. If we next look
+at the ouput from ``get<2>(some_instance)``
 
 .. code-block:: cpp
 
