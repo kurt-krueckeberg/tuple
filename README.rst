@@ -36,7 +36,6 @@ Variadic class templates allows one to implement a generic tuple as a series of 
     // at the final stage of the template's instantiation
     template<class... Types> struct tuple<> {}; 
 
-    // Recall: public inheritance is the default for structs.
     template <class T, class... Ts> struct tuple<T, Ts...> : tuple<Ts...> { 
 
         // Invoke immediate base struct template with remaining arguments sans T argument,
