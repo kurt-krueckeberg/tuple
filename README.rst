@@ -26,7 +26,7 @@ A variadic templates can be instantiated with a varying number of template param
       
    tuple t(10, 22.5); // Instantiates: tuple<int, float>
 
-The variadic class template allows use to implement the tuple as a series of derived ``struct``\s .
+Variadic class templates allows one to implement a generic tuple as a series of derived ``struct``\s .
 
 .. code-block:: cpp
 
