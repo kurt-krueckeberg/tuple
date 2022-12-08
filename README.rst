@@ -62,7 +62,7 @@ A tuple declared like this:
 
 will result in this series of template instantiations: 
 
-* ``struct tuple<string> : tuple<float> : tuple<string> : tuple<> { string tail; }``
+* ``struct tuple<int> : tuple<float> : tuple<string> : tuple<> { string tail; }``
 * ``struct tuple<float> : tuple<int> : tuple { float  tail;}``
 * ``struct tuple<int> : tuple { int tail;}``
 * ``struct tuple {}`` // This is the ``tuple<>`` instance.
