@@ -76,8 +76,8 @@ struct, and so on, with the right-most member variable in the penultimate base s
 Defining Recursive Data Structures Using Variadic Class Templates
 -----------------------------------------------------------------
 
-Working Example
-+++++++++++++++
+Example
++++++++
 
 To better understand variadic class templates, first consider this series of derived structs, where each struct in the hierarchy has a sole data member *tail*:
 
