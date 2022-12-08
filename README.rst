@@ -70,7 +70,8 @@ The member variables of the base classes will be these:
 * ``struct tuple<string> : tuple { string tail;}``
 * ``struct tuple {}`` // This is the ``tuple<>`` instance.
 
-The first parameter of a tuple's constructor will reside in ultimate base struct, the 2nd parameter in the penultimate base class, and so on.
+The first parameter of a tuple's constructor will reside in the top-level struct, the 2nd parameter in the penultimate top-level
+struct, and so on, with the right-most member variable in the penultimate base struct. The base struct will have no member variable.
 
 Defining Recursive Data Structures Using Variadic Class Templates
 -----------------------------------------------------------------
