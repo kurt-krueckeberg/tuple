@@ -63,6 +63,9 @@ A tuple declared like this:
 will result in this series of template instantiations: 
 
 * ``struct tuple<int> : tuple<float> : tuple<string> : tuple { int tail; }``
+
+The member variables of the base classes will be these:
+
 * ``struct tuple<float> : tuple<string> : tuple { float tail;}``
 * ``struct tuple<string> : tuple { string tail;}``
 * ``struct tuple {}`` // This is the ``tuple<>`` instance.
