@@ -79,7 +79,8 @@ Defining Recursive Data Structures Using Variadic Class Templates
 Example
 +++++++
 
-To better understand variadic class templates, first consider this series of derived structs, where each struct in the hierarchy has a sole data member *tail*:
+To better understand variadic class templates, first consider this series of derived structs, where each struct in the hierarchy
+has a sole data member *tail*:
 
 .. code-block:: cpp
 
@@ -412,7 +413,8 @@ simplifies to
 Avoiding Needless Copy Construction
 +++++++++++++++++++++++++++++++++++
 
-Each tail element in the recursive tuple data structure is copy constructed. We really want a tuple constructor that takes forwarding references so that both lvalue and rvalue parameters can be forwarded to each element's constructor. This template member function constructor does that:
+Each tail element in the recursive tuple data structure is copy constructed. We really want a tuple constructor that takes forwarding references so
+that both lvalue and rvalue parameters can be forwarded to each element's constructor. This template member function constructor does that:
 
 .. code-block:: cpp
 
@@ -446,7 +448,8 @@ Template Deduction Guides for Variadic Class Templates
 
 See:
 
-* The article `Modern C++ Features – Class Template Argument Deduction <https://arne-mertz.de/2017/06/class-template-argument-deduction/>`_ describes Template Deduction Guides. 
+* The article `Modern C++ Features – Class Template Argument Deduction <https://arne-mertz.de/2017/06/class-template-argument-deduction/>`_ describes
+Template Deduction Guides. 
 
 * `Class template argument deduction(since C++17) <https://en.cppreference.com/w/cpp/language/class_template_argument_deduction>`_.
 
@@ -459,7 +462,8 @@ See:
 Variadic Function Template
 --------------------------
  
-`Parameter pack(since C++11) <https://en.cppreference.com/w/cpp/language/parameter_pack>`_ explains that "A variadic function template can be called with any number of function arguments (the template arguments are deduced through template argument deduction)":
+`Parameter pack(since C++11) <https://en.cppreference.com/w/cpp/language/parameter_pack>`_ explains that "A variadic function template can be called with
+any number of function arguments (the template arguments are deduced through template argument deduction)":
 
 .. code-block:: cpp
 
