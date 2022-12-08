@@ -221,12 +221,16 @@ Visually the layout of ``tuple<double, int, const char *>`` looks like this:
 Accessing Elements of the Recursive Data Structure
 ++++++++++++++++++++++++++++++++++++++++++++++++++
 
-We can now instantiate tuples of varying types, but how do we access its elements? How do we retrieve or change, say, the ``int`` value above or that ``const char *``? It boils down to determing at what level the ``int tail`` member is in the inheritance hierarchy, and then casting the
-tuple to state type adn retrieving that base's ``tail`` member. We use the variadic template function ``get<size_t, tuple<Ts ...>>`` to do this. ``get<size_t, tuple<Ts ...>>`` uses  another recursive data structure that is also defined using variadic class templates, 
+We can now instantiate tuples of varying types, but how do we access its elements? How do we retrieve or change, say, the ``int`` value above or
+that ``const char *``? It boils down to determing at what level the ``int tail`` member is in the inheritance hierarchy, and then casting the
+tuple to state type adn retrieving that base's ``tail`` member. We use the variadic template function ``get<size_t, tuple<Ts ...>>`` to do this.
+``get<size_t, tuple<Ts ...>>`` uses  another recursive data structure that is also defined using variadic class templates, 
 ``template<std::size_t Index, class _tuple> struct tuple_element``. 
 
-``tuple_element``'s sole purpose is to provide type information about a given level of the ``tuple`` hierachy. Unlike ``tuple``, which contains a sole ``tail`` data member at each level of its recursive structure, ``tuple_element`` contains no data members. Instead it only
-contains the two *type definitions* below. And these two type definitions only occur in the at the bottom level of the ``tuple_element``, in the tuple_element specialization ``template<std::size_t Index, class _tuple> struct tuple_element<0, class _tuple>``:
+``tuple_element``'s sole purpose is to provide type information about a given level of the ``tuple`` hierachy. Unlike ``tuple``, which
+contains a sole ``tail`` data member at each level of its recursive structure, ``tuple_element`` contains no data members. Instead it only
+contains the two *type definitions* below. And these two type definitions only occur in the at the bottom level of the ``tuple_element``,
+in the tuple_element specialization ``template<std::size_t Index, class _tuple> struct tuple_element<0, class _tuple>``:
 
 1. ``using base_tuple_struct = tuple<T, Rest...>;`` // This is the type of the base struct that contains the tail member we want.
 2. ``using value_type = T&;``                     // This is a reference to tail's type.
@@ -272,7 +276,7 @@ To better grasp how ``tuple_element<std:size_t, tuple<class T, class...Rest>>`` 
         // We will cast _tuple to the base type of the corresponding tuple_element<Index,  tuple<Type...>> recursive struct's base type.
         using base_tuple_struct = typename tuple_element<Index, tuple<Type...>>::base_tuple_struct;
         
-        std::cout << "In get<" << Index << ">(some_tuple)" << " doing this cast: static_cast<base_tuple_struct&>(_tuple).tail\n
+        std::cout << "In get<" << Index << ">(some_tuple)" << " doing this cast: static_cast<base_tuple_struct&>(_tuple).tail\n \
 	              ---------" << std::endl;
         
         return static_cast<base_tuple_struct&>(_tuple).tail;
