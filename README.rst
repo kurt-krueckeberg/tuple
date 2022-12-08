@@ -20,7 +20,11 @@ A variadic templates can be instantiated with a varying number of template param
 
 .. code-block:: cpp
 
-   tuple<int, float, string> t(10, 22.5, "Hellow World");
+   tuple t(10, 22.5, "Hellow World"); // Instantiates: tuple<int, float, string
+   
+   tuple t(10); // Instantiates: tuple<int>
+      
+   tuple t(10, 22.5); // Instantiates: tuple<int, float>
 
 The variadic class template allows use to implement the tuple as a series of derived ``struct``\s .
 
