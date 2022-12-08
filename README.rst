@@ -353,18 +353,20 @@ To understand the ``static_cast`` in ``get<2>(tup1)``, we look first at the inst
       // We will cast _tuple to the base type of the corresponding tuple_element<Index,  tuple<Type...>> recursive struct's base type.
       using base_tuple_struct = tuple_element<2, tuple<int, double, const char *>>::base_tuple_struct;
     
-      std::cout << "In get<" << Index << ">(some_tuple)" << " doing this cast: static_cast<base_tuple_struct&>(_tuple).tail\n---------" << std::endl;
+      std::cout << "In get<" << Index << ">(some_tuple)" << \
+          " doing this cast: static_cast<base_tuple_struct&>(_tuple).tail\n---------" << std::endl;
     
       return static_cast<base_tuple_struct&>(_tuple).tail;
     }
 
-``_tuple`` will be cast to the ``tuple_element<2, tuple<int, double, const char *>>::base_tuple_struct``, where ``base_tuple_struct`` is defined in
-the base struct of ``tuple_element<2, tuple<int, double, const char *>>::base_tuple_struct``, which is ``tuple_element<0, tuple<const char *>>``,
-and is:
+``_tuple`` will be cast to the ``tuple_element<2, tuple<int, double, const char *>>::base_tuple_struct``, where
+``base_tuple_struct`` is defined in the base struct of ``tuple_element<2, tuple<int, double, const char *>>::base_tuple_struct``,
+which is ``tuple_element<0, tuple<const char *>>``, and is:
 
 ``using base_tuple_struct = tuple<const char *>;``
 
-Likewise ``tuple_element<2, tuple<int, double, const char *>>::value_type`` is also defined in ``tuple_element<0, tuple<const char *>>``, and is:
+Likewise ``tuple_element<2, tuple<int, double, const char *>>::value_type`` is also defined in ``tuple_element<0, tuple<const char *>>``, 
+and is:
 
  ``using value_type=const char *;``
 
@@ -374,7 +376,8 @@ Substituting these values into the instantiation of ``get<2>(tup1)`` gives us
 
     const char *get<1>(tuple<int, double, const char *>& _tuple)
     {
-      return static_cast< tuple<const char *>& >(_tuple).tail; // This returns 'const char * tail;' member of the base struct.
+      // This returns 'const char * tail;' member of the base struct.
+      return static_cast< tuple<const char *>& >(_tuple).tail; 
     }
 
 Similarly the instantiation of ``get<1`>(tup1)`` 
@@ -384,9 +387,11 @@ Similarly the instantiation of ``get<1`>(tup1)``
     tuple_element<1, tuple<double, int, const char *>>::value_type get<1>(tuple<int, double, const char *>& _tuple)
     {
       // We will cast _tuple to the base type of the corresponding tuple_element<Index,  tuple<Type...>> recursive struct's base type.
+
       using base_tuple_struct = tuple_element<1, tuple<int, double, const char *>::base_tuple_struct;
-    
-      return static_cast<base_tuple_struct&>(_tuple).tail; // This returns 'const char * tail;' member of the base struct.
+
+      // This returns 'const char * tail;' member of the base struct.
+      return static_cast<base_tuple_struct&>(_tuple).tail; 
     }
 
 simplifies to
@@ -404,10 +409,12 @@ And finally, the instantiation of ``get<0>(tup1)``
 
     tuple_element<0, tuple<int, double, const char *>>::value_type get<2>(tuple<int, double, const char *>& _tuple)
     {
-      // We will cast _tuple to the base type of the corresponding tuple_element<Index,  tuple<Type...>> recursive struct's base type.
+      // We will cast _tuple to the base type of the corresponding tuple_element<Index,  tuple<Type...>> recursive
+      // struct's base type.
       using base_tuple_struct = tuple_element<0, tuple<int, double, const char *>>::base_tuple_struct;
     
-      std::cout << "In get<" << Index << ">(some_tuple)" << " doing this cast: static_cast<base_tuple_struct&>(_tuple).tail\n---------" << std::endl;
+      std::cout << "In get<" << Index << ">(some_tuple)" << \
+          " doing this cast: static_cast<base_tuple_struct&>(_tuple).tail\n---------" << std::endl;
     
       return static_cast<base_tuple_struct&>(_tuple).tail;
     }
@@ -418,7 +425,8 @@ simplifies to
 
     int get<0>(tuple<int, double, const char *>& _tuple)
     {
-      return static_cast< tuple<int, double, const char *>& >(_tuple).tail; // This returns the 'const char * tail;' member of the base struct.
+      // This returns the 'const char * tail;' member of the base struct.
+      return static_cast< tuple<int, double, const char *>& >(_tuple).tail;
     }
 
 Avoiding Needless Copy Construction
@@ -486,8 +494,9 @@ any number of function arguments (the template arguments are deduced through tem
 Further Explanation
 -------------------
 
-"In a primary class template, the template parameter pack must be the final parameter in the template parameter list. In a function template, the template parameter pack may appear earlier in the list provided that all following parameters can
-be deduced from the function arguments, or have default arguments:"
+"In a primary class template, the template parameter pack must be the final parameter in the template parameter list. In a function template,
+the template parameter pack may appear earlier in the list provided that all following parameters can be deduced from the function arguments,
+or have default arguments:"
 
 .. code-block:: cpp
 
@@ -502,7 +511,8 @@ be deduced from the function arguments, or have default arguments:"
 C++17 Does Offer Limited Iteration Over a Parameter Pack
 --------------------------------------------------------
 
-In C++ a variadic template function like ``sum`` below required two versions of ``sum`` to be implemented, one taking just one parameter type and the other taking at least two or more parameters types:
+In C++ a variadic template function like ``sum`` below required two versions of ``sum`` to be implemented, one taking just one parameter type and the other taking
+at least two or more parameters types:
 
 .. code-block:: cpp
 
@@ -531,3 +541,4 @@ C++17 offers a limited form of iteration over elements of a parameter pack, whic
     {  
         return (v + ... + 0);     // add all elements of v starting with 0
     }
+
